@@ -1,11 +1,11 @@
 import random as rd
 import numpy as np
+import matplotlib as plt
 
 def kronecker(i,j):
     if i==j:
         return 1
     return 0
-
 
 
 # I : Cas où notre matrice stochastique ne dépend pas du temps:
@@ -43,26 +43,31 @@ def x(t):
         return x0
     return np.dot(exp_rap(A,t),x0)
 
+"""
 print(x0)
 x(2)
+"""
 
 # II : Modèle de Friedkin-Jhonson:
 
 # a):
+
 
 x0 = np.array([[rd.random()] for i in range(n)])
 A = mat_stoch(n)
 G = mat_stoch(n)
 In = np.eye(n)
 
+"""
 np.dot(A,x0)
+"""
 
 def x(t):
     if t == 0:
         return x0
     return np.dot(G,x0) + np.dot(In-G,np.dot(A,x(t-1)))
 
-x(1)
+#x(1)
 
 # b) Cas où G = diag(A):
 
@@ -72,10 +77,6 @@ A = mat_stoch(n)
 eigen = np.linalg.eig(A)[0]
 G = np.matrix([[kronecker(i,j)*eigen[i] for i in range(n)]for j in range(n)])
 
-def x(t):
-    if t == 0:
-        return x0
-    return np.dot(G,x0) + np.dot(In-G,np.dot(A,x(t-1)))
 
 # III Time-variant model:
 
@@ -128,30 +129,30 @@ n= 625
 x0 = np.array([[rd.random()] for i in range(n)])
 
 #1:
-epsl = 0.01
+"""epsl = 0.01
 epsr = 0.01
 
-x = [x(i,15) for i in range(n)]
+x = [x(i) for i in range(n)]
 eps = [rd.uniform(epsl,epsr) for i in range(n)]
-
+"""
 #2:
-
+"""
 epsl = 0.15
 epsr = 0.15
 
 x = [x(i,15) for i in range(n)]
 eps = [rd.uniform(epsl,epsr) for i in range(n)]
-
+"""
 #2:
-
+"""
 epsl = 0.25
 epsr = 0.25
 
 x = [x(i,15) for i in range(n)]
 eps = [rd.uniform(epsl,epsr) for i in range(n)]
-
+"""
 #3:
-
+"""
 n= 3
 x0 = np.array([[rd.random()] for i in range(n)])
 
@@ -163,13 +164,13 @@ for i in range(40):
     eps = [epsl for i in range(n)]
     x = xBC(15)
     print(x)
+"""
 
-
-#2) Cas assymétrique:
+#2) Cas asymétrique:
 
 n = 5
 x0 = sorted(np.array([[rd.random()] for i in range(n)]), key=lambda x: x[0])
-print(x0)
+#print(x0)
 eps = [(0,0) for k in range(n)]
 
 def I2(i,x):
@@ -212,3 +213,9 @@ def beta_r(x):
 
 def beta_l(x): #Def inutile mais bon...
     return 1-beta_r(x)
+
+def graph_x(t):
+    T = np.linspace(0,1,1)
+    return
+
+print(5)
