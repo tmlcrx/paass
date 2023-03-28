@@ -1,6 +1,6 @@
 import random as rd
 import numpy as np
-import matplotlib as plt
+import matplotlib.pyplot as plt
 
 def kronecker(i,j):
     if i==j:
@@ -70,13 +70,13 @@ def x(t):
 #x(1)
 
 # b) Cas où G = diag(A):
-
+"""
 x0 = np.array([[rd.random()] for i in range(n)])
 In = np.eye(n)
 A = mat_stoch(n)
 eigen = np.linalg.eig(A)[0]
 G = np.matrix([[kronecker(i,j)*eigen[i] for i in range(n)]for j in range(n)])
-
+"""
 
 # III Time-variant model:
 
@@ -218,4 +218,23 @@ def graph_x(t):
     T = np.linspace(0,1,1)
     return
 
-print(5)
+
+N = 10
+T = np.linspace(1, N, N)
+
+print(len(T))
+
+x0 = np.array([[rd.random()] for i in range(N)])
+In = np.eye(N)
+A = mat_stoch(N)
+eigen = np.linalg.eig(A)[0]
+G = np.matrix([[kronecker(i,j)*eigen[i] for i in range(N)]for j in range(N)])
+X = [x(i) for i in range(N)]
+X1 = X[1]
+print(X)
+print(X1)
+"""
+plt.plot(T,X1)
+plt.show()
+
+"""
